@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './style.scss';
 import Child from "./components/Child";
+import {BrowserRouter as Router, Switch, Route, Link, Redirect} from 'react-router-dom';
 
-function Home() {
+function Home({match}) {
     const [count, setCount] = useState(0);
     const [fruit, setFruit] = useState('banana');
 
@@ -10,6 +11,7 @@ function Home() {
 
     useEffect(() => {
         console.log('mounted');
+        console.log('match', match);
         return function() {
             console.log('unmounted');
         }
@@ -37,7 +39,10 @@ function Home() {
                 click me
             </button>
             <p>{fruit}</p>
-            <Child count={count} childData={getChildData} />
+            <Link class={'link'} to={`${match.url}/child`}>child</Link>
+            <Route path={`${match.url}/child`}>
+                <Child count={count} childData={getChildData} />
+            </Route>
         </div>
     )
 }
