@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './style.scss';
+import Child from "./components/Child";
 
 function Home() {
     const [count, setCount] = useState(0);
@@ -18,6 +19,10 @@ function Home() {
         console.log('count changed');
     }, [count]);
 
+    function getChildData(value) {
+        console.log('get child data', value);
+    }
+
     return (
         <div className={'container'}>
             <p>You Clicked {count} times</p>
@@ -25,6 +30,7 @@ function Home() {
                 click me
             </button>
             <p>{fruit}</p>
+            <Child count={count} childData={getChildData} />
         </div>
     )
 }
