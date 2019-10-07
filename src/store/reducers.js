@@ -7,6 +7,13 @@ import {
 } from './actions'
 const { SHOW_ALL } = VisibilityFilters
 
+// initial state 를 넣는다면 선언해주고 각 폴더에서
+// if 로 state 가 undefined 일때를 설정해주면 되긴 한다.
+// const initialState = {
+//     visibilityFilter: VisibilityFilters.SHOW_ALL,
+//     todos: []
+// }
+
 function visibilityFilter(state = SHOW_ALL, action) {
     switch (action.type) {
         case SET_VISIBILITY_FILTER:

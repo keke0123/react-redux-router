@@ -30,3 +30,11 @@ function* testLatestAdd(action) {
 }
 
 export default mySaga;
+
+// multiple saga 사용할때 아래와 같이 사용하면 될거 같다. / fooSagas 는 export default 된 함수
+// export default function* rootSaga() {
+//     yield all([
+//         fooSagas,
+//         barSagas
+//     ])
+// }
