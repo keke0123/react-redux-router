@@ -5,18 +5,23 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 // redux
 import {Provider} from 'react-redux';
-import { createStore } from "redux";
+import {applyMiddleware, createStore} from "redux";
 import todoApp from './store/reducers'
-const store = createStore(todoApp);
-{/*<Provider store={store}>*/}
-{/*    <App/>*/}
-{/*</Provider>*/}
+// redux-saga
+import createSagaMiddleware from 'redux-saga';
+import mySaga from './store/saga';
+const sagaMiddleware = createSagaMiddleware();
+
+const store = createStore(todoApp, applyMiddleware(sagaMiddleware));
 
 ReactDOM.render(
     <Provider store={store}>
         <App />
     </Provider>
 , document.getElementById('root'));
+
+// saga run
+sagaMiddleware.run(mySaga);
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
